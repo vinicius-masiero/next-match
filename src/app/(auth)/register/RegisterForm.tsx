@@ -13,7 +13,7 @@ export default function RegisterForm() {
     setError,
     formState: { errors, isValid, isSubmitting },
   } = useForm<RegisterSchema>({
-    // resolver: zodResolver(registerSchema),
+    resolver: zodResolver(registerSchema),
     mode: "onTouched",
   });
 
