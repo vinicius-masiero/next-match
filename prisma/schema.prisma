@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Account {
-  id                String @id @default(cuid())
+  id                String  @id @default(cuid())
   userId            String
   type              String
   provider          String
@@ -30,14 +30,42 @@ model Account {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String          @unique
+  email         String    @unique
   emailVerified DateTime?
   passwordHash  String
   image         String?
   accounts      Account[]
+  member        Member?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Member {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  name        String
+  gender      String
+  dateOfBirth DateTime
+  description String
+  city        String
+  country     String
+  image       String?
+  photos      Photo[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Photo {
+  id       String  @id @default(cuid())
+  url      String
+  publicId String?
+  memberId String
+
+  member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
 }
