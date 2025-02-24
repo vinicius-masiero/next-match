@@ -1,6 +1,6 @@
-"use client";
 import { calculateAge } from "@/lib/util";
-import { Card, CardFooter, Image } from "@heroui/react";
+import { Card, CardFooter } from "@heroui/card";
+import { Image } from "@heroui/image";
 import { Member } from "@prisma/client";
 import Link from "next/link";
 
