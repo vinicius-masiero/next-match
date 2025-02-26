@@ -1,6 +1,7 @@
 "use client";
 import { registerUser } from "@/app/actions/authActions";
 import { registerSchema, RegisterSchema } from "@/lib/schemas/registerSchema";
+import { handleFormServerErrors } from "@/lib/util";
 import { Card, CardHeader, CardBody, Input, Button } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -23,14 +24,7 @@ export default function RegisterForm() {
     if (result.status === "success") {
       console.log("User registered successfully");
     } else {
-      if (Array.isArray(result.error)) {
-        result.error.forEach((error) => {
-          const fieldName = error.path.join(".") as "email" | "name" | "password";
-          setError(fieldName, { message: error.message });
-        });
-      } else {
-        setError("root.serverError", { message: result.error });
-      }
+      handleFormServerErrors(result, setError);
     }
   };
 
