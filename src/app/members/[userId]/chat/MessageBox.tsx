@@ -1,5 +1,6 @@
 "use client";
 
+import PresenceAvatar from "@/components/PresenceAvatar";
 import { timeAgo, transformImageUrl } from "@/lib/util";
 import { MessageDto } from "@/types";
 import { Avatar } from "@heroui/avatar";
@@ -21,11 +22,12 @@ export default function MessageBox({ message, currentUserId }: Props) {
   }, [messageEndRef]);
 
   const renderAvatar = () => (
-    <Avatar
-      name={message.senderName}
-      className="self-end"
-      src={transformImageUrl(message.senderImage) || "/images/user.png"}
-    />
+    <div className="self-end">
+      <PresenceAvatar
+        src={transformImageUrl(message.senderImage) || "/images/user.png"}
+        userId={message.senderId}
+      />
+    </div>
   );
 
   const renderMessageHeader = () => (
