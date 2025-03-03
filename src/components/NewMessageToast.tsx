@@ -2,7 +2,6 @@ import { transformImageUrl } from "@/lib/util";
 import { MessageDto } from "@/types";
 import { Image } from "@heroui/image";
 import Link from "next/link";
-import { toast } from "react-toastify";
 
 type Props = {
   message: MessageDto;
@@ -26,7 +25,3 @@ export default function NewMessageToast({ message }: Props) {
     </Link>
   );
 }
-
-export const newMessageToast = (message: MessageDto) => {
-  toast(<NewMessageToast message={message} />);
-};
