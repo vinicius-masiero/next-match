@@ -1,7 +1,7 @@
 "use client";
 
 import useMessageStore from "@/hooks/useMessageStore";
-import { Chip } from "@heroui/react";
+import { Chip } from "@heroui/chip";
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";

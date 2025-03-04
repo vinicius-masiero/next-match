@@ -7,7 +7,6 @@ import { Button, Input, Textarea } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Member } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -27,17 +26,6 @@ export default function EditForm({ member }: Props) {
     resolver: zodResolver(memberEditSchema),
     mode: "onTouched",
   });
-
-  // useEffect(() => {
-  //   if (member) {
-  //     reset({
-  //       name: member.name,
-  //       description: member.description,
-  //       city: member.city,
-  //       country: member.country,
-  //     });
-  //   }
-  // }, [member, reset]);
 
   const onSubmit = async (data: MemberEditSchema) => {
     const nameUpdated = data.name !== member.name;

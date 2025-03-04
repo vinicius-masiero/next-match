@@ -1,3 +1,5 @@
+"use client";
+
 import { Spinner } from "@heroui/spinner";
 
 export default function LoadingComponent({ label }: { label?: string }) {
