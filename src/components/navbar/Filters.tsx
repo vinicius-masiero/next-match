@@ -5,6 +5,7 @@ import { Select, SelectItem } from "@heroui/select";
 import { Slider } from "@heroui/slider";
 import { useFilters } from "@/hooks/useFilters";
 import { Spinner } from "@heroui/spinner";
+import { Switch } from "@heroui/switch";
 
 export default function Filters() {
   const {
@@ -14,15 +15,18 @@ export default function Filters() {
     selectAge,
     selectGender,
     selectOrder,
+    selectWithPhoto,
     isPending,
+    totalCount,
   } = useFilters();
 
   return (
     <div className="shadow-md py-2">
       <div className="flex justify-around items-center">
         <div className="flex gap-2 items-center">
-          <div className="text-secondary font-semibold text-xl">Results: 10</div>
-          {isPending && <Spinner size="sm" color="secondary" />}
+          <div className="text-secondary font-semibold text-xl">
+            Results: {isPending ? <Spinner size="sm" color="secondary" /> : totalCount}
+          </div>
         </div>
 
         <div className="flex gap-2 items-center">
@@ -41,7 +45,7 @@ export default function Filters() {
         </div>
         <div className="flex items-center gap-2 w-1/4">
           <Slider
-            aria-label="Slider for age selection"
+            aria-label="Age range slider"
             label="Age range"
             color="secondary"
             size="sm"
@@ -49,6 +53,15 @@ export default function Filters() {
             maxValue={100}
             defaultValue={filters.ageRange}
             onChangeEnd={(value) => selectAge(value as number[])}
+          />
+        </div>
+        <div className="flex flex-col items-center">
+          <p className="text-sm">With photo</p>
+          <Switch
+            color="secondary"
+            defaultSelected
+            size="sm"
+            onChange={selectWithPhoto}
           />
         </div>
         <div className="w-1/4">

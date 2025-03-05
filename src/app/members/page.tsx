@@ -2,16 +2,16 @@ import PaginationComponent from "@/components/PaginationComponent";
 import { fetchCurrentUserLikeIds } from "../actions/likeActions";
 import { getMembers } from "../actions/memberActions";
 import MemberCard from "./MemberCard";
-import { UserFilters } from "@/types";
+import { GetMemberParams } from "@/types";
 import EmptyState from "@/components/EmptyState";
 
 export default async function MembersPage({
   searchParams,
 }: {
-  searchParams: Promise<UserFilters>;
+  searchParams: Promise<GetMemberParams>;
 }) {
   const userFilters = await searchParams;
-  const members = await getMembers(userFilters);
+  const { items: members, totalCount } = await getMembers(userFilters);
   const likeIds = await fetchCurrentUserLikeIds();
 
   return (
@@ -26,7 +26,7 @@ export default async function MembersPage({
                 <MemberCard key={member.id} member={member} likeIds={likeIds} />
               ))}
           </div>
-          <PaginationComponent />
+          <PaginationComponent totalCount={totalCount} />
         </>
       )}
     </>

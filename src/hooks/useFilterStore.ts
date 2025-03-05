@@ -4,10 +4,7 @@ import { devtools } from "zustand/middleware";
 
 type FilterState = {
   filters: UserFilters;
-  setFilters: (
-    filterName: keyof FilterState["filters"],
-    value: string | number[] | string[]
-  ) => void;
+  setFilters: (filterName: keyof FilterState["filters"], value: any) => void;
 };
 
 const useFilterStore = create<FilterState>()(
@@ -16,6 +13,7 @@ const useFilterStore = create<FilterState>()(
       ageRange: [18, 100],
       gender: ["male", "female"],
       orderBy: "updatedAt",
+      withPhoto: true,
     },
     setFilters: (filterName, value) =>
       set((state) => {
