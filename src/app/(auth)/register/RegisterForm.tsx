@@ -14,6 +14,7 @@ import ProfileForm from "./ProfileForm";
 import { registerUser } from "@/app/actions/authActions";
 import { handleFormServerErrors } from "@/lib/util";
 import { useRouter } from "next/navigation";
+import { ZodSchema } from "zod";
 
 const stepSchemas = [registerSchema, profileSchema];
 
@@ -23,7 +24,7 @@ export default function RegisterForm() {
   const currentValidationSchema = stepSchemas[activeStep];
 
   const methods = useForm<RegisterSchema>({
-    resolver: zodResolver(currentValidationSchema),
+    resolver: zodResolver(currentValidationSchema as ZodSchema),
     mode: "onTouched",
   });
 
