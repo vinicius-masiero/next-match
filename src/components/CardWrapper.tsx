@@ -35,14 +35,14 @@ export default function CardWrapper({
           </div>
         </CardHeader>
         {body && <CardBody>{body}</CardBody>}
-        {action && (
-          <CardFooter>
+        <CardFooter>
+          {action && (
             <Button onPress={action} fullWidth color="secondary" variant="bordered">
               {actionLabel}
             </Button>
-          </CardFooter>
-        )}
-        {footer && <>{footer}</>}
+          )}
+          {footer && <>{footer}</>}
+        </CardFooter>
       </Card>
     </div>
   );

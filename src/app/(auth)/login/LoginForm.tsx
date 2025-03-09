@@ -3,6 +3,7 @@ import { signInUser } from "@/app/actions/authActions";
 import { loginSchema, LoginSchema } from "@/lib/schemas/loginSchema";
 import { Button, Card, CardBody, CardHeader, Input } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { GiPadlock } from "react-icons/gi";
@@ -72,6 +73,9 @@ export default function LoginForm() {
             >
               Login
             </Button>
+            <div className="flex justify-center hover:underline text-sm">
+              <Link href="/forgot-password">Forgot your password?</Link>
+            </div>
           </div>
         </form>
       </CardBody>
