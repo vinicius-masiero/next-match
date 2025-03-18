@@ -39,6 +39,7 @@ model User {
   accounts        Account[]
   member          Member?
   profileComplete Boolean   @default(false)
+  role            Role      @default(MEMBER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -68,10 +69,11 @@ model Member {
 }
 
 model Photo {
-  id       String  @id @default(cuid())
-  url      String
-  publicId String?
-  memberId String
+  id         String  @id @default(cuid())
+  url        String
+  publicId   String?
+  memberId   String
+  isApproved Boolean @default(false)
 
   member Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
 }
@@ -112,4 +114,9 @@ model Token {
 enum TokenType {
   VERIFICATION
   PASSWORD_RESET
+}
+
+enum Role {
+  ADMIN
+  MEMBER
 }

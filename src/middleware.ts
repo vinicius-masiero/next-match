@@ -9,9 +9,15 @@ export default auth((request) => {
   const isPublic = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   const isProfileComplete = request.auth?.user.profileComplete;
+  const isAdmin = request.auth?.user.role === "ADMIN";
+  const isAdminRoute = nextUrl.pathname.startsWith("/admin");
 
-  if (isPublic) {
+  if (isPublic || isAdmin) {
     return NextResponse.next();
+  }
+
+  if (isAdminRoute && !isAdmin) {
+    return NextResponse.redirect(new URL("/", nextUrl));
   }
 
   if (isAuthRoute) {
@@ -40,5 +46,7 @@ export const config = {
    * - _next/image (image optimization files)
    * - favicon.ico, sitemap.xml, robots.txt (metadata files)
    */
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|images|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };
