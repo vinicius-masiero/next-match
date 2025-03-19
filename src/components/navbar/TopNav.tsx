@@ -1,4 +1,11 @@
-import { Navbar, NavbarBrand, NavbarContent } from "@heroui/navbar";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+} from "@heroui/navbar";
 import { Button } from "@heroui/button";
 import Link from "next/link";
 import { GiMatchTip } from "react-icons/gi";
@@ -36,6 +43,7 @@ export default async function TopNav() {
           ],
         }}
       >
+        {session && <NavbarMenuToggle className="text-white sm:hidden" />}
         <NavbarBrand as={Link} href="/">
           <GiMatchTip size={40} className="text-gray-200" />
           <div className="font-bold text-3xl flex">
@@ -43,7 +51,7 @@ export default async function TopNav() {
             <span className="text-gray-200">Match</span>
           </div>
         </NavbarBrand>
-        <NavbarContent justify="center">
+        <NavbarContent justify="center" className="hidden sm:flex">
           {session &&
             links.map((item) => (
               <NavLink key={item.href} href={item.href} label={item.label} />
@@ -68,6 +76,13 @@ export default async function TopNav() {
             </>
           )}
         </NavbarContent>
+        <NavbarMenu className="bg-secondary">
+          {links.map((item, index) => (
+            <NavbarMenuItem key={`${item}-${index}`}>
+              <NavLink key={item.href} href={item.href} label={item.label} />
+            </NavbarMenuItem>
+          ))}
+        </NavbarMenu>
       </Navbar>
       <FiltersWrapper />
     </>

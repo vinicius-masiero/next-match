@@ -31,10 +31,10 @@ export default function MemberCard({ member, likeIds }: Props) {
         className="aspect-square object-cover"
       />
       <div onClick={preventLinkAction}>
-        <div className="absolute top-3 right-3 z-50">
+        <div className="absolute top-3 right-3 z-9">
           <LikeButton targetId={member.userId} hasLiked={hasLiked} />
         </div>
-        <div className="absolute top-2 left-3 z-50">
+        <div className="absolute top-2 left-3 z-9">
           <PresenceDot member={member} />
         </div>
       </div>

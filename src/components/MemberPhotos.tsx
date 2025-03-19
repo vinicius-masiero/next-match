@@ -55,7 +55,7 @@ export default function MemberPhotos({ photos, editing, mainImageUrl }: Props) {
               <>
                 <div
                   onClick={() => onSetMain(photo)}
-                  className="absolute top-3 left-3 z-50"
+                  className="absolute top-3 left-3 z-9"
                 >
                   <StarButton
                     selected={photo.url === mainImageUrl}
@@ -69,7 +69,7 @@ export default function MemberPhotos({ photos, editing, mainImageUrl }: Props) {
                 {photo.url !== mainImageUrl && (
                   <div
                     onClick={() => onDelete(photo)}
-                    className="absolute top-3 right-3 z-50"
+                    className="absolute top-3 right-3 z-9"
                   >
                     <DeleteButton
                       loading={

@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <div className="flex flex-col justify-center items-center mt-20 gap-6 text-secondary">
       <GiMatchTip size={100} />
-      <h1 className="text-4xl font-bold">Welcome to NextMatch</h1>
+      <h1 className="text-4xl text-center font-bold">Welcome to NextMatch</h1>
       {session ? (
         <Button as={Link} href="/members" size="lg" color="secondary" variant="bordered">
           Continue

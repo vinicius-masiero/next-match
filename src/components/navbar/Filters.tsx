@@ -22,14 +22,14 @@ export default function Filters() {
 
   return (
     <div className="shadow-md py-2">
-      <div className="flex justify-around items-center">
-        <div className="flex gap-2 items-center">
+      <div className="flex gap-2 p-2 flex-col md:flex-row justify-around items-center">
+        <div className="flex gap-2 items-center w-full md:w-auto">
           <div className="text-secondary font-semibold text-xl">
             Results: {isPending ? <Spinner size="sm" color="secondary" /> : totalCount}
           </div>
         </div>
 
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-2 items-center w-full md:w-auto">
           <div>Gender:</div>
           {genderList.map(({ icon: Icon, value }) => (
             <Button
@@ -43,7 +43,16 @@ export default function Filters() {
             </Button>
           ))}
         </div>
-        <div className="flex items-center gap-2 w-1/4">
+        <div className="flex md:flex-col gap-2 md:gap-0 items-center w-full md:w-auto">
+          <p className="text-sm">With photo</p>
+          <Switch
+            color="secondary"
+            defaultSelected
+            size="sm"
+            onChange={selectWithPhoto}
+          />
+        </div>
+        <div className="flex items-center gap-2 w-full md:w-1/4">
           <Slider
             aria-label="Age range slider"
             label="Age range"
@@ -55,16 +64,7 @@ export default function Filters() {
             onChangeEnd={(value) => selectAge(value as number[])}
           />
         </div>
-        <div className="flex flex-col items-center">
-          <p className="text-sm">With photo</p>
-          <Switch
-            color="secondary"
-            defaultSelected
-            size="sm"
-            onChange={selectWithPhoto}
-          />
-        </div>
-        <div className="w-1/4">
+        <div className="w-full md:w-1/4">
           <Select
             size="sm"
             fullWidth
