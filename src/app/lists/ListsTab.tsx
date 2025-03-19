@@ -1,11 +1,10 @@
 "use client";
 
-import { Tab, Tabs } from "@heroui/react";
+import { Spinner, Tab, Tabs } from "@heroui/react";
 import { Member } from "@prisma/client";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Key, useTransition } from "react";
 import MemberCard from "../members/MemberCard";
-import LoadingComponent from "@/components/LoadingComponent";
 
 type Props = {
   members: Member[];
@@ -33,7 +32,8 @@ export default function ListsTab({ members, likeIds }: Props) {
   }
 
   return (
-    <div className="flex w-full flex-col mt-10 gap-5">
+    <div className="flex w-full flex-col mt-10 gap-5 relative">
+      {isPending && <Spinner color="secondary" className="absolute left-[450px]" />}
       <Tabs
         aria-label="Like tabs"
         items={tabs}
@@ -42,21 +42,17 @@ export default function ListsTab({ members, likeIds }: Props) {
       >
         {(item) => (
           <Tab key={item.id} title={item.label}>
-            {isPending ? (
-              <LoadingComponent />
-            ) : (
-              <>
-                {members.length > 0 ? (
-                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8">
-                    {members.map((member) => (
-                      <MemberCard key={member.id} member={member} likeIds={likeIds} />
-                    ))}
-                  </div>
-                ) : (
-                  <div>No members for this filter</div>
-                )}
-              </>
-            )}
+            <>
+              {members.length > 0 && !isPending ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8">
+                  {members.map((member) => (
+                    <MemberCard key={member.id} member={member} likeIds={likeIds} />
+                  ))}
+                </div>
+              ) : (
+                <div>No members for this filter</div>
+              )}
+            </>
           </Tab>
         )}
       </Tabs>
