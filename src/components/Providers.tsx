@@ -40,7 +40,7 @@ export default function Providers({
   return (
     <SessionProvider>
       <HeroUIProvider>
-        <ToastContainer position="bottom-right" className="z-9" />
+        <ToastContainer position="bottom-right" className="z-10" />
         {children}
       </HeroUIProvider>
     </SessionProvider>
