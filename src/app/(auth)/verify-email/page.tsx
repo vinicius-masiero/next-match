@@ -7,9 +7,10 @@ import { MdOutlineMailOutline } from "react-icons/md";
 export default async function VerifyEmailPage({
   searchParams,
 }: {
-  searchParams: { token: string };
+  searchParams: Promise<{ token: string }>;
 }) {
-  const result = await verifyEmail(searchParams.token);
+  const { token } = await searchParams;
+  const result = await verifyEmail(token);
 
   return (
     <CardWrapper

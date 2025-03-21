@@ -2,7 +2,9 @@ import PusherServer from "pusher";
 import PusherClient from "pusher-js";
 
 declare global {
+  // eslint-disable-next-line no-var
   var pusherServerInstance: PusherServer | undefined;
+  // eslint-disable-next-line no-var
   var pusherClientInstance: PusherClient | undefined;
 }
 
