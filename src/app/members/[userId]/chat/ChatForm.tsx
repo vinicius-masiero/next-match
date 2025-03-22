@@ -5,7 +5,7 @@ import { messageSchema, MessageSchema } from "@/lib/schemas/messageSchema";
 import { handleFormServerErrors } from "@/lib/util";
 import { Button, Input } from "@heroui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { HiPaperAirplane } from "react-icons/hi2";
