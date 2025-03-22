@@ -63,6 +63,7 @@ CREATE TABLE "Photo" (
     "url" TEXT NOT NULL,
     "publicId" TEXT,
     "memberId" TEXT NOT NULL,
+    "isApproved" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "Photo_pkey" PRIMARY KEY ("id")
 );
